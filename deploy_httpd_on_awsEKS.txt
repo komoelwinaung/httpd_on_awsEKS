@@ -1,0 +1,21 @@
+Idea Credit to this youtube page - https://www.youtube.com/watch?v=c4WcYjama6U
+
+
+Deploy_httpd_on_aws_eks
+
+Update kubeconfig on your machine to EKS cluster
+aws eks --region (aws region_ap-southeast-1) update-kubeconfig --name (cluster_name)
+
+Apply httpd on EKS
+kubectl apply -f run-httpd.yaml
+
+Checking your EKS info with following commands
+kubectl get services
+
+kubectl get pods -o wide
+kubectl get nodes
+
+
+kubectl expose deployment/httpd --port 80 --target-port 80 --name http-service --type LoadBalancer
+
+By checking with this command, kubectl get svc - you will see the aws classic elb and EXTERNAL-IP(DNS) of your server running with port 80.
